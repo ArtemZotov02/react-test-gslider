@@ -40,4 +40,5 @@ input, button, textarea, select {
   max-width: 1600px;
   padding: 0 10px;
   margin: 0 auto;
+  padding-bottom: 50px;
 }
