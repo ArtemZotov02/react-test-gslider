@@ -77,11 +77,11 @@
 
 // export default ProjectsGrid;
 
-
 import React, { useState, useEffect } from "react";
 import ProjectItem from "../projectItem/ProjectItem";
 import Pagination from "../pagination/Pagination";
 import style from "./style.module.scss";
+import Loading from "../loading /Loading";
 
 const ProjectsGrid = () => {
   const [projects, setProjects] = useState([]);
@@ -124,25 +124,27 @@ const ProjectsGrid = () => {
   }, [currentPage]);
 
   return (
-    <div className={style.projects}>
-      {loading && <p>Loading...</p>}
-      {error && <p>{error}</p>}
+    <>
+      {loading || error ? (
+        <Loading/>
+      ) : (
+        <div className={style.projects}>
+          <h1 className={style.projects_title}>Projects</h1>
+          <div className={style.projectsGrid}>
+            {projects.map((project, index) => (
+              <ProjectItem project={project} key={index} />
+            ))}
+          </div>
 
-      <h1 className={style.projects_title}>Projects</h1>
-      <div className={style.projectsGrid}>
-        {projects.map((project, index) => (
-          <ProjectItem project={project} key={index} />
-        ))}
-      </div>
-
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={setCurrentPage}
-      />
-    </div>
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={setCurrentPage}
+          />
+        </div>
+      )}
+    </>
   );
 };
 
 export default ProjectsGrid;
-
