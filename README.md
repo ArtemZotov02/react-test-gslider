@@ -13,6 +13,7 @@ This is a simple React app that displays a list of projects with pagination.
 
 1. Clone the repository:
    ```bash
+   git clone https://github.com/ArtemZotov02/react-test-gslider
 
 2. Navigate to the project directory
   cd react-test-gslider
